@@ -44,7 +44,7 @@ for (i in 1 : 1000) {
 
 ### Sample Mean
 
-Calculating the mean from the simulations with give the sample mean.
+Calculating the mean from the simulations gives the sample mean.
 
 ```{r echo=TRUE}
 mean(simMeans)
@@ -52,7 +52,7 @@ mean(simMeans)
 
 ### Theoretical Mean
 
-The theoretical mean of an exponential distribution is ``lambda^-1``.
+The theoretical mean of an exponential distribution is ``lambda^(-1)``.
 
 ```{r echo=TRUE}
 lambda ^ (-1)
@@ -60,15 +60,20 @@ lambda ^ (-1)
 
 ### Comparison
 
-There is only a slight difference between the simulations sample mean and the exponential distribution theoretical mean.
-
 ```{r echo=TRUE}
 abs(mean(simMeans)-lambda^(-1))
 ```
+There is only a slight difference between the simulations sample mean and the exponential distribution theoretical mean.
 
 ## Sample Variance versus Theoretical Variance
 
 ### Sample Variance
+
+Calculating the variance from the simulation means gives the sample variance.
+
+```{r echo=TRUE}
+var(simMeans)
+```
 
 ### Theoretical Variance
 
