@@ -10,3 +10,15 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Overview
+
+The purpose of the this exercise is to analyze the ToothGrowth data set by comparing the guinea tooth growth by supplement and dose. First, perform exploratory data analysis on the data set. Then, compare confidence intervals in order to make conclusions about the tooth growth.
+
+## Load ToothGrowth data and perform exploratory data analyses
+
+```{r echo=TRUE}
+library(datasets)
+data(ToothGrowth)
+str(ToothGrowth)
+head(ToothGrowth)
+summary(ToothGrowth)
+```
