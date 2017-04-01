@@ -77,7 +77,19 @@ var(simMeans)
 
 ### Theoretical Variance
 
+The theoretical variance of an exponential distribution is ``` ( lambda * sqrt(n) ) ^ (-2) ```.
+
+```{r echo=TRUE}
+( lambda * sqrt(exponentials) ) ^ (-2)
+```
+
 ### Comparison
+
+There is only a slight difference between the simulations sample variance and the exponential distribution theoretical variance.
+
+```{r echo=TRUE}
+abs(var(simMeans)-(lambda * sqrt(exponentials))^(-2))
+```
 
 ## Distribution
 

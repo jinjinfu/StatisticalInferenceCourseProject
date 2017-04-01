@@ -36,3 +36,17 @@ lambda ^ (-1)
 abs(
 	mean(simMeans) - lambda ^ (-1)
 )
+
+# sample variance v theoretical val
+# sample variance
+
+var(simMeans)
+
+# theoretical variance
+( lambda * sqrt(exponentials) ) ^ (-2)
+
+# Comparison
+
+abs(var(simMeans)-(lambda * sqrt(exponentials))^(-2))
+
+
