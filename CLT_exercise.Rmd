@@ -27,7 +27,17 @@ Run the simulations with variables.
 
 ```{r echo=TRUE}
 simMeans = NULL
-for (i in 1 : 1000) simMeans = c(simMeans, mean(rexp(exponentials, lambda)))
+for (i in 1 : 1000) {
+	simMeans <- c(
+		simMeans,
+		mean(
+			rexp(
+				exponentials,
+				lambda
+			)
+		)
+	)
+}
 ```
 
 ## Sample Mean versus Theoretical Mean
