@@ -54,4 +54,21 @@ abs(var(simMeans)-(lambda * sqrt(exponentials))^(-2))
 library(ggplot2)
 ggplot(
 	data.frame(y=simMeans),
-	aes(x=y)) + geom_histogram(aes(y=..density..), binwidth=0.2, fill="#0072B2", color="black") + stat_function(fun=dnorm, arg=list(mean=lambda^-1, sd=(lambda*sqrt(exponentials))^-1), size=2) + labs(title="Plot of the Simulations", x="Simulation Mean")
+	aes(x=y)
+)
+	+ geom_histogram(
+		aes(y=..density..),
+		binwidth=0.2,
+		fill="#0072B2",
+		color="black"
+	)
+	+ stat_function(
+		fun=dnorm,
+		arg=list(
+			mean=lambda^(-1),
+			sd=(lambda*sqrt(exponentials))^-1),
+			size=2)
+	+ labs(
+		title="Plot of the Simulations",
+		x="Simulation Mean"
+	)
