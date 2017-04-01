@@ -23,4 +23,8 @@ for (i in 1 : 1000) {
 	)
 }
 
+# sample means
+
+mean(simMeans)
+
 
