@@ -1,0 +1,15 @@
+---
+title: "Investigate the exponential distribution in R and compare it with the Central Limit Theorem"
+author: "Glenn Kerbein"
+date: "April 1, 2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE, echo = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Overview
+
+
+
