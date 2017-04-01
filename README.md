@@ -1,0 +1,2 @@
+# StatisticalInferenceCourseProject
+Statistical Inference Course Project
