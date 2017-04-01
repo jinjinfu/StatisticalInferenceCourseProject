@@ -27,4 +27,12 @@ for (i in 1 : 1000) {
 
 mean(simMeans)
 
+# Theoretical Mean
 
+lambda ^ (-1)
+
+# comparison
+
+abs(
+	mean(simMeans) - lambda ^ (-1)
+)
