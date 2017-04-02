@@ -106,3 +106,45 @@ ggplot(
     ggtitle("Effect of Supplement Type and Dosage on Tooth Growth")
 ```
 
+## The 95% condifence intervals per-interval:
+```{r echo=TRUE}
+alpha <- 1 - 0.95
+availabledosages <- c(0.5, 1, 2)
+statnames <- c("OJ-mean","OJ-lower","OJ-upper","VC-mean","VC-lower","VC-upper")
+dosagematrix <- matrix(
+	nrow = 0,
+	ncol = length(statnames)
+)
+
+for(rowname in c(0.5, 1, 2)){
+	x <- ToothGrowth$len[ToothGrowth$supp=="OJ" & ToothGrowth$dose == rowname]
+	y <- ToothGrowth$len[ToothGrowth$supp=="VC" & ToothGrowth$dose == rowname]
+	dosagematrix <- rbind(
+		dosagematrix,
+		c(
+			round(
+				mean(x),
+				2
+			),
+			round(
+				mean(x) - qnorm(1-alpha/2) * sd(x)/sqrt(length(x)),
+				2
+			),
+			round(
+				mean(x) + qnorm(1-alpha/2) * sd(x)/sqrt(length(x)),
+				2
+			),
+			round(mean(y),2),
+			round(mean(y) - qnorm(1-alpha/2) * sd(y)/sqrt(length(y)),2),
+			round(mean(y) + qnorm(1-alpha/2) * sd(y)/sqrt(length(y)),2)
+		)
+	)
+}
+
+rownames(dosagematrix) <- availabledosages
+colnames(dosagematrix) <- statnames
+```
+
+**0.5mg dosage**
+
+
