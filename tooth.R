@@ -55,16 +55,13 @@ alpha <- 1 - 0.95
 availabledosages <- c(0.5, 1, 2)
 statnames <- c("OJ-mean","OJ-lower","OJ-upper","VC-mean","VC-lower","VC-upper")
 dosagematrix <- matrix(
-	nrow = length(availabledosages),
+	nrow = 0,
 	ncol = length(statnames)
 )
-#rownames(dosagematrix) <- availabledosages
-#colnames(dosagematrix) <- statnames
 
-for(rowname in 1:length(availabledosages)){
-	x <- ToothGrowth$len[ToothGrowth$supp=="OJ" & ToothGrowth$dose == availabledosages[rowname]]
-	y <- ToothGrowth$len[ToothGrowth$supp=="VC" & ToothGrowth$dose == availabledosages[rowname]]
-	print(paste("using dosage", availabledosages[rowname]))
+for(rowname in c(0.5, 1, 2)){
+	x <- ToothGrowth$len[ToothGrowth$supp=="OJ" & ToothGrowth$dose == rowname]
+	y <- ToothGrowth$len[ToothGrowth$supp=="VC" & ToothGrowth$dose == rowname]
 	dosagematrix <- rbind(
 		dosagematrix,
 		c(
@@ -85,9 +82,10 @@ for(rowname in 1:length(availabledosages)){
 			round(mean(y) + qnorm(1-alpha/2) * sd(y)/sqrt(length(y)),2)
 		)
 	)
-	#print(statinfo)
 }
-print(dosagematrix)
+
+rownames(dosagematrix) <- availabledosages
+colnames(dosagematrix) <- statnames
 
 x <- ToothGrowth$len[ToothGrowth$supp=="OJ" & ToothGrowth$dose == 0.5]
 y <- ToothGrowth$len[ToothGrowth$supp=="VC" & ToothGrowth$dose == 0.5]
