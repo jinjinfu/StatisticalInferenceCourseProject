@@ -87,32 +87,4 @@ for(rowname in c(0.5, 1, 2)){
 rownames(dosagematrix) <- availabledosages
 colnames(dosagematrix) <- statnames
 
-x <- ToothGrowth$len[ToothGrowth$supp=="OJ" & ToothGrowth$dose == 0.5]
-y <- ToothGrowth$len[ToothGrowth$supp=="VC" & ToothGrowth$dose == 0.5]
-d05 <- c(
-	round(mean(x),2),
-	(
-		round(
-			mean(x) + c(-1,1) * qnorm(1-alpha/2) * sd(x)/sqrt(length(x)),2)
-		),
-		round(mean(y),2),
-	(
-		round(mean(y) + c(-1,1) * qnorm(1-alpha/2) * sd(y)/sqrt(length(y)),2)
-	)
-)
-
-x <- ToothGrowth$len[ToothGrowth$supp=="OJ" & ToothGrowth$dose == 1]
-y <- ToothGrowth$len[ToothGrowth$supp=="VC" & ToothGrowth	$dose == 1]
-d10 <- c(round(mean(x),2),
-  (round(mean(x) + c(-1,1) * qnorm(0.975) * sd(x)/sqrt(length(x)),2)),
-  round(mean(y),2),
-  (round(mean(y) + c(-1,1) * qnorm(0.975) * sd(y)/sqrt(length(y)),2)))
-
-x <- ToothGrowth$len[ToothGrowth$supp=="OJ" & ToothGrowth$dose == 2]
-y <- ToothGrowth$len[ToothGrowth$supp=="VC" & ToothGrowth$dose == 2]
-d20 <- c(round(mean(x),2),
-  (round(mean(x) + c(-1,1) * qnorm(0.975) * sd(x)/sqrt(length(x)),2)),
-  round(mean(y),2),
-  (round(mean(y) + c(-1,1) * qnorm(0.975) * sd(y)/sqrt(length(y)),2)))
-
 
