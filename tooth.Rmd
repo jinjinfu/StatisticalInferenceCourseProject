@@ -4,13 +4,11 @@ author: "Glenn Kerbein"
 date: "April 1, 2017"
 output: pdf_document
 ---
-
 ```{r setup, include=FALSE, echo = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Overview
-
 The purpose of the this exercise is to analyze the ToothGrowth data set by comparing the guinea tooth growth by supplement and dose. We will perform the following:
 
 1. Load the ToothGrowth data and perform some basic exploratory data analyses
@@ -26,37 +24,29 @@ The purpose of the this exercise is to analyze the ToothGrowth data set by compa
 **Description**
 
 The response is the length of odontoblasts (teeth) in each of 10 guinea pigs at each of three dose levels of Vitamin C (0.5, 1, and 2 mg) with each of two delivery methods (orange juice or ascorbic acid).
-
 **Usage**
-
 ToothGrowth
-
 **Format**
 
 A data frame with 60 observations on 3 variables.
-
 [,1] len : Tooth length {numeric}
 [,2] supp : Supplement type (VC or OJ) {factor}
 [,3] dose : Dose in milligrams {numeric}
 
 **Source**
+C. I. Bliss (1952) _The Statistics of Bioassay_. Academic Press.
 
-C. I. Bliss (1952) The Statistics of Bioassay. Academic Press.
-
-References
-McNeil, D. R. (1977) Interactive Data Analysis. New York: Wiley.
-
+**References**
+McNeil, D. R. (1977) _Interactive Data Analysis_. New York: Wiley.
 
 ```{r echo=TRUE}
 library(datasets)
 data(ToothGrowth)
 dim(ToothGrowth)
 ```
-
 ```{r echo=TRUE}
 head(ToothGrowth)
 ```
-
 # Provide a basic summary of the data.
 ```{r echo=TRUE}
 summary(ToothGrowth)
@@ -64,18 +54,9 @@ summary(ToothGrowth)
 Get information about the tooth decay lengths:
 ```{r echo=TRUE}
 c(
-	round(
-		mean(ToothGrowth$len),
-		3
-	),
-	round(
-		sd(ToothGrowth$len),
-		3
-	),
-	round(
-		var(ToothGrowth$len),
-		3
-	)
+	round(mean(ToothGrowth$len),3),
+	round(sd(ToothGrowth$len),3),
+	round(var(ToothGrowth$len),3)
 )
 ```
 Turn dosages into factors, instead of numerics. This will make graphing easier.
@@ -83,20 +64,13 @@ Turn dosages into factors, instead of numerics. This will make graphing easier.
 ToothGrowth$dose <- as.factor(ToothGrowth$dose)
 summary(ToothGrowth)
 ```
-
 # Use confidence intervals and/or hypothesis tests to compare tooth growth by supp and dose. (Only use the techniques from class, even if there’s other approaches worth considering)
-
 Graphical analysis of data:
-
 ```{r echo=TRUE}
 library(ggplot2)
 ggplot(
 	ToothGrowth,
-	aes(
-		x=factor(dose),
-		y=len,
-		fill=factor(dose)
-	)
+	aes(x=factor(dose),y=len,fill=factor(dose))
 ) + 
     geom_boxplot(notch=F) +
     facet_grid(.~supp) +
@@ -107,6 +81,7 @@ ggplot(
 ```
 
 ## The 95% condifence intervals per-interval:
+
 ```{r echo=TRUE}
 alpha <- 1 - 0.95
 availabledosages <- c(0.5, 1, 2)
@@ -115,50 +90,41 @@ dosagematrix <- matrix(
 	nrow = 0,
 	ncol = length(statnames)
 )
-
-for(rowname in c(0.5, 1, 2)){
+for(rowname in availabledosages){
 	x <- ToothGrowth$len[ToothGrowth$supp=="OJ" & ToothGrowth$dose == rowname]
 	y <- ToothGrowth$len[ToothGrowth$supp=="VC" & ToothGrowth$dose == rowname]
 	dosagematrix <- rbind(
 		dosagematrix,
 		c(
-			round(
-				mean(x),
-				2
-			),
-			round(
-				mean(x) - qnorm(1-alpha/2) * sd(x)/sqrt(length(x)),
-				2
-			),
-			round(
-				mean(x) + qnorm(1-alpha/2) * sd(x)/sqrt(length(x)),
-				2
-			),
+			round(mean(x),2),
+			round(mean(x) - qnorm(1-alpha/2) * sd(x)/sqrt(length(x)),2),
+			round(mean(x) + qnorm(1-alpha/2) * sd(x)/sqrt(length(x)),2),
 			round(mean(y),2),
 			round(mean(y) - qnorm(1-alpha/2) * sd(y)/sqrt(length(y)),2),
 			round(mean(y) + qnorm(1-alpha/2) * sd(y)/sqrt(length(y)),2)
 		)
 	)
 }
-
 rownames(dosagematrix) <- availabledosages
 colnames(dosagematrix) <- statnames
 ```
 
 **0.5mg dosage**
+
 |     OJ-mean   | OJ-lower | OJ-upper | VC-mean | VC-lower | VC-upper |
-| :-----------: |:--------:| :-------:| :-----: |:--------:| :-------:|
+|:-------------:|:--------:|:--------:|:-------:|:--------:|:--------:|
 |     13.23     |   10.47  |   15.99  |  7.98   |   6.28   |   9.68   |
 
-
 **1.0mg dosage**
+
 |     OJ-mean   | OJ-lower | OJ-upper | VC-mean | VC-lower | VC-upper |
-| :-----------: |:--------:| :-------:| :-----: |:--------:| :-------:|
+|:-------------:|:--------:|:--------:|:-------:|:--------:|:--------:|
 |     22.70     |   20.28  |   25.12  |  16.77  |  15.21   |   18.33  |
 
 **2.0mg dosage**
+
 |     OJ-mean   | OJ-lower | OJ-upper | VC-mean | VC-lower | VC-upper |
-| :-----------: |:--------:| :-------:| :-----: |:--------:| :-------:|
+|:-------------:|:--------:|:--------:|:-------:|:--------:|:--------:|
 |     26.06     |   24.41  |   27.71  |  26.14  |   23.17  |   29.11  |
 
 # State your conclusions and the assumptions needed for your conclusions.
