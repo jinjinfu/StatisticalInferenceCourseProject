@@ -47,11 +47,18 @@ References
 McNeil, D. R. (1977) Interactive Data Analysis. New York: Wiley.
 
 
-
 ```{r echo=TRUE}
 library(datasets)
 data(ToothGrowth)
-str(ToothGrowth)
+dim(ToothGrowth)
+```
+
+```{r echo=TRUE}
 head(ToothGrowth)
+```
+
+# Provide a basic summary of the data.
+```{r echo=TRUE}
 summary(ToothGrowth)
 ```
+
