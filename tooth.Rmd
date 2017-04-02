@@ -147,4 +147,8 @@ colnames(dosagematrix) <- statnames
 
 **0.5mg dosage**
 
+| OJ-mean       | OJ-lower      | OJ-upper | VC-mean | VC-lower | VC-upper |
+| :-----------: |:-------------:| :-------:| :-----: |:--------:| :-------:|
+| col 3 is      | right-aligned |   $1600  |  ol 3   |  right   |  $1600   |
+
 
