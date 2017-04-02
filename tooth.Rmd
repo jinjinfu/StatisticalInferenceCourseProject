@@ -146,9 +146,20 @@ colnames(dosagematrix) <- statnames
 ```
 
 **0.5mg dosage**
+|     OJ-mean   | OJ-lower | OJ-upper | VC-mean | VC-lower | VC-upper |
+| :-----------: |:--------:| :-------:| :-----: |:--------:| :-------:|
+|     13.23     |   10.47  |   15.99  |  7.98   |   6.28   |   9.68   |
 
-| OJ-mean       | OJ-lower      | OJ-upper | VC-mean | VC-lower | VC-upper |
-| :-----------: |:-------------:| :-------:| :-----: |:--------:| :-------:|
-| col 3 is      | right-aligned |   $1600  |  ol 3   |  right   |  $1600   |
 
+**1.0mg dosage**
+|     OJ-mean   | OJ-lower | OJ-upper | VC-mean | VC-lower | VC-upper |
+| :-----------: |:--------:| :-------:| :-----: |:--------:| :-------:|
+|     22.70     |   20.28  |   25.12  |  16.77  |  15.21   |   18.33  |
+
+**2.0mg dosage**
+|     OJ-mean   | OJ-lower | OJ-upper | VC-mean | VC-lower | VC-upper |
+| :-----------: |:--------:| :-------:| :-----: |:--------:| :-------:|
+|     26.06     |   24.41  |   27.71  |  26.14  |   23.17  |   29.11  |
+
+# State your conclusions and the assumptions needed for your conclusions.
 
