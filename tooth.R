@@ -59,7 +59,7 @@ dosagematrix <- matrix(
 	ncol = length(statnames)
 )
 
-for(rowname in c(0.5, 1, 2)){
+for(rowname in availabledosages){
 	x <- ToothGrowth$len[ToothGrowth$supp=="OJ" & ToothGrowth$dose == rowname]
 	y <- ToothGrowth$len[ToothGrowth$supp=="VC" & ToothGrowth$dose == rowname]
 	dosagematrix <- rbind(
