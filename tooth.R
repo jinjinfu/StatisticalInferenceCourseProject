@@ -3,9 +3,34 @@
 ## Load ToothGrowth data and perform exploratory data analyses
 library(datasets)
 data(ToothGrowth)
-str(ToothGrowth)
+dim(ToothGrowth)
+
 head(ToothGrowth)
+
+## Provide a basic summary of the data.
 summary(ToothGrowth)
+
+# get statistical information about lengths
+c(
+	round(
+		mean(ToothGrowth$len),
+		3
+	),
+	round(
+		sd(ToothGrowth$len),
+		3
+	),
+	round(
+		var(ToothGrowth$len),
+		3
+	)
+)
+
+# Turn dosages into factors
+ToothGrowth$dose <- as.factor(ToothGrowth$dose)
+summary(ToothGrowth)
+
+
 
 library(ggplot2)
 t = ToothGrowth

@@ -61,4 +61,30 @@ head(ToothGrowth)
 ```{r echo=TRUE}
 summary(ToothGrowth)
 ```
+Get information about the tooth decay lengths:
+```{r echo=TRUE}
+c(
+	round(
+		mean(ToothGrowth$len),
+		3
+	),
+	round(
+		sd(ToothGrowth$len),
+		3
+	),
+	round(
+		var(ToothGrowth$len),
+		3
+	)
+)
+```
+Turn dosages into factors, instead of numerics. This will make graphing easier.
+```{r echo=TRUE}
+ToothGrowth$dose <- as.factor(ToothGrowth$dose)
+summary(ToothGrowth)
+```
+
+# Use confidence intervals and/or hypothesis tests to compare tooth growth by supp and dose. (Only use the techniques from class, even if there’s other approaches worth considering)
+
+Graphical analysis of data:
 
