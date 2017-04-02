@@ -9,11 +9,44 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Overview
+# Overview
 
-The purpose of the this exercise is to analyze the ToothGrowth data set by comparing the guinea tooth growth by supplement and dose. First, perform exploratory data analysis on the data set. Then, compare confidence intervals in order to make conclusions about the tooth growth.
+The purpose of the this exercise is to analyze the ToothGrowth data set by comparing the guinea tooth growth by supplement and dose. We will perform the following:
 
-## Load ToothGrowth data and perform exploratory data analyses
+1. Load the ToothGrowth data and perform some basic exploratory data analyses
+2. Provide a basic summary of the data.
+3. Use confidence intervals and/or hypothesis tests to compare tooth growth by supp and dose. (Only use the techniques from class, even if there's other approaches worth considering)
+4. State your conclusions and the assumptions needed for your conclusions.
+
+# Load ToothGrowth data and perform exploratory data analyses
+
+### ToothGrowth {datasets}
+*The Effect of Vitamin C on Tooth Growth in Guinea Pigs*
+
+**Description**
+
+The response is the length of odontoblasts (teeth) in each of 10 guinea pigs at each of three dose levels of Vitamin C (0.5, 1, and 2 mg) with each of two delivery methods (orange juice or ascorbic acid).
+
+**Usage**
+
+ToothGrowth
+
+**Format**
+
+A data frame with 60 observations on 3 variables.
+
+[,1] len : Tooth length {numeric}
+[,2] supp : Supplement type (VC or OJ) {factor}
+[,3] dose : Dose in milligrams {numeric}
+
+**Source**
+
+C. I. Bliss (1952) The Statistics of Bioassay. Academic Press.
+
+References
+McNeil, D. R. (1977) Interactive Data Analysis. New York: Wiley.
+
+
 
 ```{r echo=TRUE}
 library(datasets)
