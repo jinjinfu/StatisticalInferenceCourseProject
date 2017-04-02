@@ -88,3 +88,21 @@ summary(ToothGrowth)
 
 Graphical analysis of data:
 
+```{r echo=TRUE}
+library(ggplot2)
+ggplot(
+	ToothGrowth,
+	aes(
+		x=factor(dose),
+		y=len,
+		fill=factor(dose)
+	)
+) + 
+    geom_boxplot(notch=F) +
+    facet_grid(.~supp) +
+    scale_x_discrete("Dosage (mg)") +   
+    scale_y_continuous("Tooth Length") +  
+    scale_fill_discrete(name="Dose (mg)") + 
+    ggtitle("Effect of Supplement Type and Dosage on Tooth Growth")
+```
+

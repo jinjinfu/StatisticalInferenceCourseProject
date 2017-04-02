@@ -50,13 +50,71 @@ ggplot(
     ggtitle("Effect of Supplement Type and Dosage on Tooth Growth")
 
 
-#library(ggplot2)
-#t = ToothGrowth
-#levels(t$supp) <- c("Orange Juice", "Ascorbic Acid")
-#ggplot(t, aes(x=factor(dose), y=len)) + 
-#  facet_grid(.~supp) +
-#  geom_boxplot(aes(fill = supp), show.legend = FALSE) +
-#  labs(title="Guinea pig tooth length by dosage for each type of supplement", 
-#    x="Dose (mg/day)",
-#    y="Tooth Length")
+# The condifence intervals (95%) are:
+alpha <- 1 - 0.95
+availabledosages <- c(0.5, 1, 2)
+statnames <- c("OJ-mean","OJ-lower","OJ-upper","VC-mean","VC-lower","VC-upper")
+dosagematrix <- matrix(
+	nrow = length(availabledosages),
+	ncol = length(statnames)
+)
+#rownames(dosagematrix) <- availabledosages
+#colnames(dosagematrix) <- statnames
+
+for(rowname in 1:length(availabledosages)){
+	x <- ToothGrowth$len[ToothGrowth$supp=="OJ" & ToothGrowth$dose == availabledosages[rowname]]
+	y <- ToothGrowth$len[ToothGrowth$supp=="VC" & ToothGrowth$dose == availabledosages[rowname]]
+	print(paste("using dosage", availabledosages[rowname]))
+	dosagematrix <- rbind(
+		dosagematrix,
+		c(
+			round(
+				mean(x),
+				2
+			),
+			round(
+				mean(x) - qnorm(1-alpha/2) * sd(x)/sqrt(length(x)),
+				2
+			),
+			round(
+				mean(x) + qnorm(1-alpha/2) * sd(x)/sqrt(length(x)),
+				2
+			),
+			round(mean(y),2),
+			round(mean(y) - qnorm(1-alpha/2) * sd(y)/sqrt(length(y)),2),
+			round(mean(y) + qnorm(1-alpha/2) * sd(y)/sqrt(length(y)),2)
+		)
+	)
+	#print(statinfo)
+}
+print(dosagematrix)
+
+x <- ToothGrowth$len[ToothGrowth$supp=="OJ" & ToothGrowth$dose == 0.5]
+y <- ToothGrowth$len[ToothGrowth$supp=="VC" & ToothGrowth$dose == 0.5]
+d05 <- c(
+	round(mean(x),2),
+	(
+		round(
+			mean(x) + c(-1,1) * qnorm(1-alpha/2) * sd(x)/sqrt(length(x)),2)
+		),
+		round(mean(y),2),
+	(
+		round(mean(y) + c(-1,1) * qnorm(1-alpha/2) * sd(y)/sqrt(length(y)),2)
+	)
+)
+
+x <- ToothGrowth$len[ToothGrowth$supp=="OJ" & ToothGrowth$dose == 1]
+y <- ToothGrowth$len[ToothGrowth$supp=="VC" & ToothGrowth	$dose == 1]
+d10 <- c(round(mean(x),2),
+  (round(mean(x) + c(-1,1) * qnorm(0.975) * sd(x)/sqrt(length(x)),2)),
+  round(mean(y),2),
+  (round(mean(y) + c(-1,1) * qnorm(0.975) * sd(y)/sqrt(length(y)),2)))
+
+x <- ToothGrowth$len[ToothGrowth$supp=="OJ" & ToothGrowth$dose == 2]
+y <- ToothGrowth$len[ToothGrowth$supp=="VC" & ToothGrowth$dose == 2]
+d20 <- c(round(mean(x),2),
+  (round(mean(x) + c(-1,1) * qnorm(0.975) * sd(x)/sqrt(length(x)),2)),
+  round(mean(y),2),
+  (round(mean(y) + c(-1,1) * qnorm(0.975) * sd(y)/sqrt(length(y)),2)))
+
 
