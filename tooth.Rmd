@@ -163,3 +163,8 @@ colnames(dosagematrix) <- statnames
 
 # State your conclusions and the assumptions needed for your conclusions.
 
+Based on the analysis:
+
+* For lower dosages (0.5mg and 1.0 mg), OJ provides more tooth growth than VC;
+* For 2.0mg dosage tooth growth is the same for both supplement methods;
+* Higher dosages give more growth, independent of supplement method
